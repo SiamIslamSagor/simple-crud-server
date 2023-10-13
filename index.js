@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 
 // middle ware
 app.use(cors());
-// to get (req.body)
+// to get (req.body) ata chara bosy undefine thakbe.
 app.use(express.json());
 
 // msiamislam12345
@@ -30,6 +30,18 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+
+    const database = client.db("usersDB");
+    const userCollection = database.collection("users");
+
+    app.post("/users", async (req, res) => {
+      const user = req.body;
+      console.log("NEW USER: ", user);
+      //
+      const result = await userCollection.insertOne(user);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
