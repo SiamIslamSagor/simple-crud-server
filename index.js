@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 const app = express();
 
 // dynamic port
@@ -13,9 +14,8 @@ app.use(express.json());
 // msiamislam12345
 // OEeCXfMPIK90Sx31
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri =
-  "mongodb+srv://msiamislam12345:<password>@cluster0.e9we0w0.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://msiamislam12345:OEeCXfMPIK90Sx31@cluster0.e9we0w0.mongodb.net/?retryWrites=true&w=majority";
 //
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -37,7 +37,7 @@ async function run() {
     );
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
