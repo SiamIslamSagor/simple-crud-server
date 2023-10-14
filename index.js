@@ -34,12 +34,14 @@ async function run() {
     // read multiple document in mongoDB
     const userCollection = client.db("usersDB").collection("users");
 
+    // to read data
     app.get("/users", async (req, res) => {
       const cursor = userCollection.find();
       const result = await cursor.toArray();
       res.send(result);
     });
 
+    // to create data
     app.post("/users", async (req, res) => {
       const user = req.body;
       console.log("NEW USER: ", user);
@@ -48,6 +50,7 @@ async function run() {
       res.send(result);
     });
 
+    // to delete data
     app.delete("/users/:id", async (req, res) => {
       const id = req.params.id;
       console.log("Please Delete Form Database: ", id);
